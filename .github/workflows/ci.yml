@@ -1,0 +1,128 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
+      - staging
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+env:
+  CARGO_INCREMENTAL: 0
+  CARGO_NET_RETRY: 10
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -D warnings
+  RUSTUP_MAX_RETRIES: 10
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deny:
+    uses: taiki-e/workflows/.github/workflows/deny.yml@main
+  msrv:
+    uses: taiki-e/workflows/.github/workflows/msrv.yml@main
+    with:
+      event_name: ${{ github.event_name }}
+  tidy:
+    uses: taiki-e/workflows/.github/workflows/tidy-rust.yml@main
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - rust: stable
+          - rust: beta
+          - rust: nightly
+          - rust: nightly
+            os: macos-11
+          - rust: nightly
+            os: windows-2019
+    runs-on: ${{ matrix.os || 'ubuntu-18.04' }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        run: rustup toolchain add ${{ matrix.rust }} --no-self-update && rustup default ${{ matrix.rust }}
+      - run: rustup toolchain add nightly --no-self-update
+      - uses: taiki-e/install-action@cargo-hack
+      - uses: taiki-e/install-action@cargo-minimal-versions
+      - run: echo "RUSTFLAGS=${RUSTFLAGS} -C target-feature=+crt-static" >> "${GITHUB_ENV}"
+        if: startsWith(matrix.os, 'windows')
+      - run: cargo test --workspace --all-features
+      - run: cargo minimal-versions build --workspace --all-features --ignore-private
+        if: startsWith(matrix.rust, 'nightly')
+      - run: cargo install -f --path . --debug
+      - run: cargo no-dev-deps check --workspace --all-features -v
+      - run: cargo no-dev-deps build --workspace --all-features -v
+
+  build:
+    name: build (${{ matrix.target }})
+    env:
+      cargo: cargo
+    strategy:
+      fail-fast: false
+      matrix:
+        # When updating this list, the reminder to update the target list in release.yml.
+        include:
+          - target: aarch64-unknown-linux-gnu
+          - target: aarch64-unknown-linux-musl
+          - target: aarch64-apple-darwin
+            os: macos-11
+          - target: aarch64-pc-windows-msvc
+            os: windows-2019
+          - target: x86_64-unknown-linux-gnu
+          - target: x86_64-unknown-linux-musl
+          - target: x86_64-apple-darwin
+            os: macos-11
+          - target: x86_64-pc-windows-msvc
+            os: windows-2019
+          - target: x86_64-unknown-freebsd
+    runs-on: ${{ matrix.os || 'ubuntu-18.04' }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        run: rustup update stable --no-self-update
+      - run: rustup target add ${{ matrix.target }}
+      - uses: taiki-e/setup-cross-toolchain-action@v1
+        with:
+          target: ${{ matrix.target }}
+        if: (matrix.os == '' || startsWith(matrix.os, 'ubuntu')) && !contains(matrix.target, '-musl')
+      - uses: taiki-e/install-action@cross
+        if: contains(matrix.target, '-musl')
+      - run: echo "RUSTFLAGS=${RUSTFLAGS} -C target-feature=+crt-static" >> "${GITHUB_ENV}"
+        if: endsWith(matrix.target, 'windows-msvc')
+      - run: echo "cargo=cross" >>"${GITHUB_ENV}"
+        if: contains(matrix.target, '-musl')
+      - run: $cargo build --target ${{ matrix.target }}
+      - run: $cargo build --target ${{ matrix.target }} --release
+      # For debugging
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/cargo-no-dev-deps*
+
+  # ALL THE PREVIOUS JOBS NEEDS TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
+
+  ci-success:
+    name: ci
+    if: github.event_name == 'push' && success()
+    # prettier-ignore
+    needs: [deny, msrv, tidy, test, build] # tidy:needs
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Mark the job as a success
+        run: exit 0
