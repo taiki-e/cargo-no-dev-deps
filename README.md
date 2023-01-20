@@ -42,7 +42,7 @@ If you want exclude `publish = false` crates, you can exclude these crates by us
 cargo no-dev-deps --no-private check
 ```
 
-This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), which also prevents private crate from affecting dependency resolution.
+This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), which also prevents private crate from affecting lockfile and metadata.
 
 ## Installation
 
