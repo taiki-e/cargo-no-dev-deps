@@ -34,6 +34,8 @@ To run `cargo check` without dev-deps:
 cargo no-dev-deps check
 ```
 
+**Note:** cargo-no-dev-deps modifies `Cargo.toml` and `Cargo.lock` while running and restores it when finished. Any changes you made to those files during running will not be preserved.
+
 ## Installation
 
 <!-- omit in toc -->
@@ -79,7 +81,7 @@ This makes the installation faster and may avoid the impact of [problems caused 
 <!-- omit in toc -->
 ### Via Homebrew
 
-You can install [cargo-no-dev-deps using Homebrew tap on macOS and Linux](https://github.com/taiki-e/homebrew-tap/blob/main/Formula/cargo-no-dev-deps.rb):
+You can install [cargo-no-dev-deps using Homebrew tap on macOS and Linux](https://github.com/taiki-e/homebrew-tap/blob/HEAD/Formula/cargo-no-dev-deps.rb):
 
 ```sh
 brew install taiki-e/tap/cargo-no-dev-deps
