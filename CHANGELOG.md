@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Update `toml_edit` to 0.18.
+
 ## [0.2.0] - 2023-01-20
 
 - Add `--no-private` flag to exclude `publish = false` crates.
