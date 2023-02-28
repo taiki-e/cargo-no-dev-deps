@@ -2,6 +2,7 @@ use std::{env, ffi::OsStr, path::PathBuf};
 
 use anyhow::{Context as _, Result};
 use camino::{Utf8Path, Utf8PathBuf};
+use serde::Deserialize;
 
 use crate::process::ProcessBuilder;
 
@@ -35,9 +36,15 @@ pub(crate) fn package_root(cargo: &OsStr, manifest_path: Option<&Utf8Path>) -> R
     Ok(package_root)
 }
 
+// Old cargo doesn't support `--message-format plain`.
+#[derive(Deserialize)]
+struct LocateProject {
+    root: String,
+}
+
 // https://doc.rust-lang.org/nightly/cargo/commands/cargo-locate-project.html
 fn locate_project(cargo: &OsStr) -> Result<String> {
-    cmd!(cargo, "locate-project", "--message-format", "plain").read()
+    Ok(serde_json::from_str::<LocateProject>(&cmd!(cargo, "locate-project").read()?)?.root)
 }
 
 // https://doc.rust-lang.org/nightly/cargo/commands/cargo-metadata.html

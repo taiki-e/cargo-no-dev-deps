@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Fix compatibility with old cargo.
+
 ## [0.2.1] - 2023-01-24
 
 - Update `toml_edit` to 0.18.
