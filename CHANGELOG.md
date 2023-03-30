@@ -14,6 +14,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 - Fix compatibility with old cargo.
 
+- Update `toml_edit` to 0.19.
+
 ## [0.2.1] - 2023-01-24
 
 - Update `toml_edit` to 0.18.
