@@ -2,7 +2,7 @@
 
 [![crates.io](https://img.shields.io/crates/v/cargo-no-dev-deps?style=flat-square&logo=rust)](https://crates.io/crates/cargo-no-dev-deps)
 [![license](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue?style=flat-square)](#license)
-[![rustc](https://img.shields.io/badge/rustc-1.60+-blue?style=flat-square&logo=rust)](https://www.rust-lang.org)
+[![rustc](https://img.shields.io/badge/rustc-1.64+-blue?style=flat-square&logo=rust)](https://www.rust-lang.org)
 [![build status](https://img.shields.io/github/actions/workflow/status/taiki-e/cargo-no-dev-deps/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/cargo-no-dev-deps/actions)
 
 Cargo subcommand for running cargo without dev-dependencies.
@@ -53,7 +53,7 @@ This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://g
 cargo +stable install cargo-no-dev-deps --locked
 ```
 
-*Compiler support: requires rustc 1.60+*
+*Compiler support: requires rustc 1.64+*
 
 cargo-no-dev-deps is usually runnable with Cargo versions older than the Rust version
 required for installation (e.g., `cargo +1.59 no-dev-deps check`).
