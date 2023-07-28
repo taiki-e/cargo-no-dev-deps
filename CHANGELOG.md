@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.3] - 2023-07-28
+
 - Update `cargo_metadata` to 0.17.
 
 ## [0.2.2] - 2023-02-28
@@ -36,7 +38,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.1.0...v0.2.0
