@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Update `cargo_metadata` to 0.17.
+
 ## [0.2.2] - 2023-02-28
 
 - Fix compatibility with old cargo.
