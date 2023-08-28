@@ -23,7 +23,15 @@ cargo-no-dev-deps
 Cargo subcommand for running cargo without dev-dependencies.
 
 USAGE:
-    cargo no-dev-deps [CARGO_OPTIONS]
+    cargo no-dev-deps <CARGO_SUBCOMMAND> [OPTIONS] [CARGO_OPTIONS]
+
+OPTIONS:
+        --no-private    Perform without `publish = false` crates
+
+CARGO_SUBCOMMANDS:
+    build
+    check
+    ...
 ```
 <!-- readme-long-help:end -->
 
@@ -41,7 +49,7 @@ If you want exclude `publish = false` crates, you can exclude these crates by us
 cargo no-dev-deps --no-private check
 ```
 
-This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), which also prevents private crate from affecting lockfile and metadata.
+This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), because this also prevents private crates from affecting lockfile and metadata.
 
 ## Installation
 

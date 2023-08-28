@@ -38,78 +38,91 @@ fn try_main() -> Result<()> {
     let args = Args::parse()?;
     let ws = Workspace::new(args.manifest_path.as_deref())?;
 
+    let no_dev_deps = true;
     // TODO: provide option to keep updated Cargo.lock
     let restore_lockfile = true;
+    with(&ws.metadata, no_dev_deps, args.no_private, restore_lockfile, || {
+        let mut cargo = ws.cargo();
+        cargo.args(args.cargo_args);
+        if !args.rest.is_empty() {
+            cargo.arg("--");
+            cargo.args(args.rest);
+        }
+        info!("running {cargo}");
+        cargo.run()
+    })
+}
+
+fn with(
+    metadata: &cargo_metadata::Metadata,
+    no_dev_deps: bool,
+    no_private: bool,
+    restore_lockfile: bool,
+    f: impl FnOnce() -> Result<()>,
+) -> Result<()> {
     let restore = restore::Manager::new();
-    let mut restore_handles = Vec::with_capacity(ws.metadata.workspace_members.len());
-    let workspace_root = &ws.metadata.workspace_root;
+    let mut restore_handles = Vec::with_capacity(metadata.workspace_members.len());
+    let workspace_root = &metadata.workspace_root;
     let root_manifest = &workspace_root.join("Cargo.toml");
     let mut has_root_crate = false;
     let mut private_crates = vec![];
-    for id in &ws.metadata.workspace_members {
-        let package = &ws.metadata[id];
+    for id in &metadata.workspace_members {
+        let package = &metadata[id];
         let manifest_path = &package.manifest_path;
         let is_root = manifest_path == root_manifest;
         has_root_crate |= is_root;
         // Publishing is unrestricted if null, and forbidden if an empty array.
         let is_private = package.publish.as_ref().map_or(false, Vec::is_empty);
-        if is_private && args.no_private {
+        if is_private && no_private {
             if is_root {
                 bail!("--no-private is not supported yet with workspace with private root crate");
             }
             private_crates.push(manifest_path);
-        } else if is_root && args.no_private {
+        } else if is_root && no_private {
             //
-        } else {
+        } else if no_dev_deps {
             let orig = fs::read_to_string(manifest_path)?;
             let mut doc = orig
                 .parse()
                 .with_context(|| format!("failed to parse manifest `{manifest_path}` as toml"))?;
-            self::remove_dev_deps(&mut doc);
-            restore_handles.push(restore.push(orig, manifest_path.as_std_path()));
             if term::verbose() {
                 info!("removing dev-dependencies from {manifest_path}");
             }
+            remove_dev_deps(&mut doc);
+            restore_handles.push(restore.push(orig, manifest_path.as_std_path()));
             fs::write(manifest_path, doc.to_string())?;
         }
     }
-    if args.no_private && (has_root_crate || !private_crates.is_empty()) {
+    if no_private && (no_dev_deps && has_root_crate || !private_crates.is_empty()) {
         let manifest_path = root_manifest;
         let orig = fs::read_to_string(manifest_path)?;
         let mut doc = orig
             .parse()
             .with_context(|| format!("failed to parse manifest `{manifest_path}` as toml"))?;
-        if has_root_crate {
-            self::remove_dev_deps(&mut doc);
+        if no_dev_deps && has_root_crate {
+            if term::verbose() {
+                info!("removing dev-dependencies from {manifest_path}");
+            }
+            remove_dev_deps(&mut doc);
         }
         if !private_crates.is_empty() {
-            self::remove_private_crates(&mut doc, &ws.metadata, &private_crates)?;
+            if term::verbose() {
+                info!("removing private crates from {manifest_path}");
+            }
+            remove_private_crates(&mut doc, metadata, &private_crates)?;
         }
         restore_handles.push(restore.push(orig, manifest_path.as_std_path()));
-        if term::verbose() && has_root_crate {
-            info!("removing dev-dependencies from {manifest_path}");
-        }
-        if term::verbose() && !private_crates.is_empty() {
-            info!("removing private crates from {manifest_path}");
-        }
         fs::write(manifest_path, doc.to_string())?;
     }
     if restore_lockfile {
-        let lockfile = &ws.metadata.workspace_root.join("Cargo.lock");
+        let lockfile = &metadata.workspace_root.join("Cargo.lock");
         if lockfile.exists() {
             restore_handles
                 .push(restore.push(fs::read_to_string(lockfile)?, lockfile.as_std_path()));
         }
     }
 
-    let mut cargo = ws.cargo();
-    cargo.args(args.cargo_args);
-    if !args.rest.is_empty() {
-        cargo.arg("--");
-        cargo.args(args.rest);
-    }
-    info!("running {cargo}");
-    cargo.run()?;
+    f()?;
 
     // Restore original Cargo.toml and Cargo.lock.
     drop(restore_handles);

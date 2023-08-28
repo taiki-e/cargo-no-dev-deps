@@ -28,7 +28,7 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 - Add `--no-private` flag to exclude `publish = false` crates.
 
-  This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), which also prevents private crate from affecting lockfile and metadata.
+  This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), because this also prevents private crates from affecting lockfile and metadata.
 
 - Restore `Cargo.lock` after run to match behavior with [cargo-minimal-versions](https://github.com/taiki-e/cargo-minimal-versions).
 

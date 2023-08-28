@@ -1,3 +1,5 @@
+// Adapted from https://github.com/taiki-e/cargo-hack/blob/v0.5.6/src/restore.rs.
+
 use std::{
     mem,
     path::{Path, PathBuf},
@@ -12,7 +14,6 @@ use crate::term;
 #[derive(Clone)]
 pub(crate) struct Manager {
     /// Information on files that need to be restored.
-    /// If `needs_restore` is `false`, this is always empty.
     files: Arc<Mutex<Slab<File>>>,
 }
 

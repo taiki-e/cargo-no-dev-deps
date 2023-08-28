@@ -12,7 +12,13 @@ use crate::term;
 static USAGE: &str = "cargo-no-dev-deps\n
 Cargo subcommand for running cargo without dev-dependencies.
 \nUSAGE:
-    cargo no-dev-deps [CARGO_OPTIONS]
+    cargo no-dev-deps <CARGO_SUBCOMMAND> [OPTIONS] [CARGO_OPTIONS]
+\nOPTIONS:
+        --no-private    Perform without `publish = false` crates
+\nCARGO_SUBCOMMANDS:
+    build
+    check
+    ...
 ";
 
 pub(crate) struct Args {
