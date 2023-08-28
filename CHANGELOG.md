@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Fix bug in `--no-private` flag on Windows.
+
 ## [0.2.3] - 2023-07-28
 
 - Update `cargo_metadata` to 0.17.
