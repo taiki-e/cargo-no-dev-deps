@@ -115,7 +115,7 @@ scoop install cargo-no-dev-deps
 <!-- omit in toc -->
 ### Via cargo-binstall
 
-You can install cargo-no-dev-deps using [cargo-binstall](https://github.com/ryankurte/cargo-binstall):
+You can install cargo-no-dev-deps using [cargo-binstall](https://github.com/cargo-bins/cargo-binstall):
 
 ```sh
 cargo binstall cargo-no-dev-deps
