@@ -60,7 +60,7 @@ This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://g
 cargo +stable install cargo-no-dev-deps --locked
 ```
 
-*Compiler support: requires rustc 1.65+*
+*Compiler support: requires rustc 1.66+*
 
 cargo-no-dev-deps is usually runnable with Cargo versions older than the Rust version
 required for installation (e.g., `cargo +1.59 no-dev-deps check`).
