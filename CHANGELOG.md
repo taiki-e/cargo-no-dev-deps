@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Fix regression on `--no-private` flag with virtual workspace, introduced in 0.2.5.
+
 ## [0.2.5] - 2023-09-09
 
 - Improve support for very old Cargo (pre-1.39).
