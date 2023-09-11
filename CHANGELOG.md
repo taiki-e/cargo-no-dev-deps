@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.7] - 2023-09-11
+
 - Remove dependency on `slab`, `shell-escape`, and `fs-err`.
 
 ## [0.2.6] - 2023-09-10
@@ -54,7 +56,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.6...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.7...HEAD
+[0.2.7]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.3...v0.2.4
