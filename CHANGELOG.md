@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Update `toml_edit` to 0.21.
+
 ## [0.2.7] - 2023-09-11
 
 - Remove dependency on `slab`, `shell-escape`, and `fs-err`.
