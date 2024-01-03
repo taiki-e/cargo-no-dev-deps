@@ -45,28 +45,30 @@ fn rustc_path(cargo: impl AsRef<Path>) -> PathBuf {
     }
 }
 
+fn rustc_version(rustc: &Path) -> Result<RustcVersion> {
+    // Use verbose version output because the packagers add extra strings to the normal version output.
+    let mut cmd = cmd!(rustc, "--version", "--verbose");
+    let verbose_version = cmd.read()?;
+    RustcVersion::parse(&verbose_version)
+        .ok_or_else(|| format_err!("unexpected version output from {cmd}: {verbose_version}"))
+}
+
 struct RustcVersion {
     minor: u32,
 }
 
-fn rustc_version(rustc: &Path) -> Result<RustcVersion> {
-    let mut cmd = cmd!(rustc, "--version", "--verbose");
-    let verbose_version = cmd.read()?;
-    let release = verbose_version
-        .lines()
-        .find_map(|line| line.strip_prefix("release: "))
-        .ok_or_else(|| format_err!("unexpected version output from `{cmd}`: {verbose_version}"))?;
-    let (version, _channel) = release.split_once('-').unwrap_or((release, ""));
-    let mut digits = version.splitn(3, '.');
-    let minor = (|| {
-        let major = digits.next()?.parse::<u32>().ok()?;
-        if major != 1 {
+impl RustcVersion {
+    fn parse(verbose_version: &str) -> Option<Self> {
+        let release = verbose_version.lines().find_map(|line| line.strip_prefix("release: "))?;
+        let (version, _channel) = release.split_once('-').unwrap_or((release, ""));
+        let mut digits = version.splitn(3, '.');
+        let major = digits.next()?;
+        if major != "1" {
             return None;
         }
         let minor = digits.next()?.parse::<u32>().ok()?;
         let _patch = digits.next().unwrap_or("0").parse::<u32>().ok()?;
-        Some(minor)
-    })()
-    .ok_or_else(|| format_err!("unable to determine rustc version"))?;
-    Ok(RustcVersion { minor })
+
+        Some(Self { minor })
+    }
 }
