@@ -33,6 +33,8 @@ concurrency:
 jobs:
   deny:
     uses: taiki-e/github-actions/.github/workflows/deny.yml@main
+  miri:
+    uses: taiki-e/github-actions/.github/workflows/miri.yml@main
   msrv:
     uses: taiki-e/github-actions/.github/workflows/msrv.yml@main
     with:
@@ -94,16 +96,3 @@ jobs:
       - run: cargo install -f --path . --debug
       - run: cargo no-dev-deps check --workspace --all-features -v
       - run: cargo no-dev-deps build --workspace --all-features -v
-
-  miri:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - uses: taiki-e/github-actions/checkout@main
-      - name: Install Rust
-        run: rustup toolchain add nightly --no-self-update --component miri && rustup default nightly
-      - run: cargo miri test --workspace --all-features
-        env:
-          MIRIFLAGS: -Zmiri-strict-provenance -Zmiri-symbolic-alignment-check -Zmiri-disable-isolation
-          RUSTDOCFLAGS: ${{ env.RUSTDOCFLAGS }} -Z randomize-layout
-          RUSTFLAGS: ${{ env.RUSTFLAGS }} -Z randomize-layout
