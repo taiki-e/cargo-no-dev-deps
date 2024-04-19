@@ -60,7 +60,7 @@ This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://g
 cargo +stable install cargo-no-dev-deps --locked
 ```
 
-*Compiler support: requires rustc 1.70+*
+Currently, installing cargo-no-dev-deps requires rustc 1.70+.
 
 cargo-no-dev-deps is usually runnable with Cargo versions older than the Rust version
 required for installation (e.g., `cargo +1.59 no-dev-deps check`).
@@ -96,7 +96,7 @@ This makes the installation faster and may avoid the impact of [problems caused 
 <!-- omit in toc -->
 ### Via Homebrew
 
-You can install [cargo-no-dev-deps using Homebrew tap on macOS and Linux](https://github.com/taiki-e/homebrew-tap/blob/HEAD/Formula/cargo-no-dev-deps.rb):
+You can install cargo-no-dev-deps from the [Homebrew tap maintained by us](https://github.com/taiki-e/homebrew-tap/blob/HEAD/Formula/cargo-no-dev-deps.rb) (x86_64/aarch64 macOS, x86_64/aarch64 Linux):
 
 ```sh
 brew install taiki-e/tap/cargo-no-dev-deps
@@ -105,7 +105,7 @@ brew install taiki-e/tap/cargo-no-dev-deps
 <!-- omit in toc -->
 ### Via Scoop (Windows)
 
-You can install [cargo-no-dev-deps using Scoop](https://github.com/taiki-e/scoop-bucket/blob/HEAD/bucket/cargo-no-dev-deps.json):
+You can install cargo-no-dev-deps from the [Scoop bucket maintained by us](https://github.com/taiki-e/scoop-bucket/blob/HEAD/bucket/cargo-no-dev-deps.json):
 
 ```sh
 scoop bucket add taiki-e https://github.com/taiki-e/scoop-bucket
