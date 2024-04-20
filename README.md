@@ -76,7 +76,7 @@ Prebuilt binaries are available for macOS, Linux (gnu and musl), Windows (static
 
 ```sh
 # Get host target
-host=$(rustc -Vv | grep host | sed 's/host: //')
+host=$(rustc -vV | grep '^host:' | cut -d' ' -f2)
 # Download binary and install to $HOME/.cargo/bin
 curl --proto '=https' --tlsv1.2 -fsSL https://github.com/taiki-e/cargo-no-dev-deps/releases/latest/download/cargo-no-dev-deps-$host.tar.gz | tar xzf - -C "$HOME/.cargo/bin"
 ```
