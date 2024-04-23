@@ -27,8 +27,7 @@ fn main() {
         error!("{e:#}");
     }
     if term::error()
-        || term::warn()
-            && env::var_os("CARGO_NO_DEV_DEPS_DENY_WARNINGS").filter(|v| v == "true").is_some()
+        || term::warn() && env::var_os("CARGO_NO_DEV_DEPS_DENY_WARNINGS").unwrap_or_default() == "1"
     {
         std::process::exit(1)
     }
