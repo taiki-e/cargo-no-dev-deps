@@ -49,7 +49,7 @@ impl ProcessBuilder {
     }
 
     /// Enables all display-related flags.
-    fn display_all(&mut self) {
+    fn display_all(&self) {
         self.display_program_path.set(true);
     }
 
