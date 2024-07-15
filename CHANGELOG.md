@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 - Distribute prebuilt binary for x86_64 illumos.
 
+- Always exit with 1 on SIGINT/SIGTERM/SIGHUP. Previously, it sometimes exited with 0, but this sometimes worked badly with CI systems that attempted to terminate processes in SIGINT during resource usage problems.
+
 ## [0.2.12] - 2024-03-10
 
 - Pin `ctrlc` to fix [build error on macOS](https://github.com/Detegr/rust-ctrlc/pull/116).
