@@ -100,7 +100,7 @@ pub(crate) fn with(
             }
             remove_dev_deps(&mut doc);
             restore.register(manifest.raw, manifest_path);
-            fs::write(manifest_path, doc.to_string())?;
+            fs::write_atomic(manifest_path, doc.to_string())?;
         }
     }
     let has_root_crate = root_crate.is_some();
@@ -131,7 +131,7 @@ pub(crate) fn with(
             remove_private_crates(&mut doc, workspace_root, private_crates);
         }
         restore.register(orig, manifest_path);
-        fs::write(manifest_path, doc.to_string())?;
+        fs::write_atomic(manifest_path, doc.to_string())?;
     }
     if restore_lockfile {
         let lockfile = &workspace_root.join("Cargo.lock");
