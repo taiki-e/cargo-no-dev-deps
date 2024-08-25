@@ -34,7 +34,7 @@ impl Args {
         const SUBCMD: &str = "no-dev-deps";
 
         // rustc/cargo args must be valid Unicode
-        // https://github.com/rust-lang/rust/blob/1.70.0/compiler/rustc_driver_impl/src/lib.rs#L1366-L1376
+        // https://github.com/rust-lang/rust/blob/1.80.0/compiler/rustc_driver_impl/src/args.rs#L121
         fn handle_args(
             args: impl IntoIterator<Item = impl Into<OsString>>,
         ) -> impl Iterator<Item = Result<String>> {
