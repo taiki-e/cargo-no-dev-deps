@@ -26,9 +26,7 @@ fn main() {
     if let Err(e) = try_main() {
         error!("{e:#}");
     }
-    if term::error()
-        || term::warn() && env::var_os("CARGO_NO_DEV_DEPS_DENY_WARNINGS").unwrap_or_default() == "1"
-    {
+    if term::error() || term::warn() && env::var_os("CARGO_NO_DEV_DEPS_DENY_WARNINGS").is_some() {
         std::process::exit(1)
     }
 }
