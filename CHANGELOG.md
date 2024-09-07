@@ -10,6 +10,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Disable quick-install fallback of cargo-binstall.
+
 ## [0.2.13] - 2024-07-15
 
 - Distribute prebuilt binary for x86_64 illumos.
