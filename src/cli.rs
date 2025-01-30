@@ -30,7 +30,7 @@ pub(crate) struct Args {
 }
 
 impl Args {
-    pub(crate) fn parse() -> Result<Self> {
+    pub(crate) fn parse() -> Result<Option<Self>> {
         const SUBCMD: &str = "no-dev-deps";
 
         // rustc/cargo args must be valid Unicode
@@ -99,11 +99,11 @@ impl Args {
 
                 Short('h') | Long("help") if subcommand.is_none() => {
                     print!("{USAGE}");
-                    std::process::exit(0);
+                    return Ok(None);
                 }
                 Short('V') | Long("version") if subcommand.is_none() => {
                     println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-                    std::process::exit(0);
+                    return Ok(None);
                 }
 
                 // passthrough
@@ -152,7 +152,7 @@ impl Args {
             cargo_args.push(path.clone());
         }
 
-        Ok(Self { no_private, manifest_path, cargo_args, rest })
+        Ok(Some(Self { no_private, manifest_path, cargo_args, rest }))
     }
 }
 
