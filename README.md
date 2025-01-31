@@ -41,7 +41,8 @@ To run `cargo check` without dev-deps:
 cargo no-dev-deps check
 ```
 
-**Note:** cargo-no-dev-deps modifies `Cargo.toml` and `Cargo.lock` while running and restores it when finished. Any changes you made to those files during running will not be preserved.
+> [!NOTE]
+> cargo-no-dev-deps modifies `Cargo.toml` and `Cargo.lock` while running and restores it when finished. Any changes you made to those files during running will not be preserved.
 
 If you want exclude `publish = false` crates, you can exclude these crates by using `--no-private` flag.
 
