@@ -15,6 +15,9 @@ This is an extraction of the [cargo-hack's `--no-dev-deps` flag](https://github.
 
 ## Usage
 
+<details>
+<summary>Complete list of options (click to show)</summary>
+
 <!-- readme-long-help:start -->
 ```console
 $ cargo no-dev-deps --help
@@ -34,6 +37,8 @@ CARGO_SUBCOMMANDS:
     ...
 ```
 <!-- readme-long-help:end -->
+
+</details>
 
 To run `cargo check` without dev-deps:
 
@@ -73,13 +78,14 @@ You can download prebuilt binaries from the [Release page](https://github.com/ta
 Prebuilt binaries are available for macOS, Linux (gnu and musl), Windows (static executable), FreeBSD, and illumos.
 
 <details>
-<summary>Example of script to download cargo-no-dev-deps</summary>
+<summary>Example of script to install from the Release page (click to show)</summary>
 
 ```sh
 # Get host target
 host=$(rustc -vV | grep '^host:' | cut -d' ' -f2)
 # Download binary and install to $HOME/.cargo/bin
-curl --proto '=https' --tlsv1.2 -fsSL https://github.com/taiki-e/cargo-no-dev-deps/releases/latest/download/cargo-no-dev-deps-$host.tar.gz | tar xzf - -C "$HOME/.cargo/bin"
+curl --proto '=https' --tlsv1.2 -fsSL "https://github.com/taiki-e/cargo-no-dev-deps/releases/latest/download/cargo-no-dev-deps-$host.tar.gz" \
+  | tar xzf - -C "$HOME/.cargo/bin"
 ```
 
 </details>
