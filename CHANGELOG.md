@@ -12,6 +12,10 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Performance improvements.
+
+- Documentation improvements.
+
 ## [0.2.14] - 2024-10-26
 
 - Disable quick-install fallback of cargo-binstall.
