@@ -2,7 +2,7 @@
 
 use std::{env, ffi::OsString};
 
-use anyhow::{bail, format_err, Result};
+use anyhow::{Result, bail, format_err};
 use lexopt::{
     Arg::{Long, Short, Value},
     ValueExt as _,
