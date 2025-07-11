@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.16] - 2025-07-11
+
 - Update `toml_edit` to 0.23.
 
 ## [0.2.15] - 2025-02-11
@@ -96,7 +98,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.15...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.16...HEAD
+[0.2.16]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.15...v0.2.16
 [0.2.15]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.14...v0.2.15
 [0.2.14]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.13...v0.2.14
 [0.2.13]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.12...v0.2.13
