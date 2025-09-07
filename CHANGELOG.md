@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.17] - 2025-09-07
+
 - Distribute prebuilt binaries for powerpc64le/riscv64gc/s390x Linux.
 
 ## [0.2.16] - 2025-07-11
@@ -100,7 +102,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.16...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.17...HEAD
+[0.2.17]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.16...v0.2.17
 [0.2.16]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.15...v0.2.16
 [0.2.15]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.14...v0.2.15
 [0.2.14]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.13...v0.2.14
