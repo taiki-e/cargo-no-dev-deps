@@ -129,6 +129,7 @@ jobs:
     permissions:
       contents: write # for gh release edit
     steps:
+      - uses: taiki-e/checkout-action@v1
       - run: gh release edit "${REF#refs/tags/}" --draft=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
