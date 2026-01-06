@@ -1,6 +1,6 @@
 [package]
 name = "cargo-no-dev-deps"
-version = "0.2.19" #publish:version
+version = "0.2.20" #publish:version
 edition = "2021"
 # NB: Sync with the MSRV in "From source" section in README.md.
 rust-version = "1.82" # Align to cargo-hack
