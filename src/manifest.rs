@@ -71,8 +71,8 @@ pub(crate) fn with(
     let root_manifest = &workspace_root.join("Cargo.toml");
     let mut root_crate = None;
     let mut private_crates = BTreeSet::new();
-    for id in &metadata.workspace_members {
-        let package = &metadata.packages[id];
+    for &id in &metadata.workspace_members {
+        let package = &metadata[id];
         let manifest_path = &*package.manifest_path;
         let is_root = manifest_path == root_manifest;
         let mut manifest = None;
