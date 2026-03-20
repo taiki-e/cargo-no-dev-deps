@@ -12,9 +12,13 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+- Publish [artifact attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
+
 ## [0.2.22] - 2026-03-20
 
-- Use [artifact attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
+Note: this release lacks prebuilt binaries.
+
+- No notable change from the previous release.
 
 ## [0.2.21] - 2026-02-13
 
