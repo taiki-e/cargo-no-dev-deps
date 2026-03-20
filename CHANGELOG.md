@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.22] - 2026-03-20
+
 - Use [artifact attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
 
 ## [0.2.21] - 2026-02-13
@@ -120,7 +122,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.21...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.22...HEAD
+[0.2.22]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.21...v0.2.22
 [0.2.21]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.20...v0.2.21
 [0.2.20]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.19...v0.2.20
 [0.2.19]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.18...v0.2.19
