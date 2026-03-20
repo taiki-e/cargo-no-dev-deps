@@ -18,7 +18,7 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [0.2.22] - 2026-03-20
 
-Note: this release lacks prebuilt binaries.
+Note: this release lacks prebuilt binaries due to release workflow issue fixed in 0.2.23.
 
 - No notable change from the previous release.
 
