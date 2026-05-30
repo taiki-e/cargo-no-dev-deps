@@ -12,7 +12,7 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
-**This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.44.**
+**This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.45.**
 
 ## [0.2.23] - 2026-03-20
 

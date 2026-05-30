@@ -5,7 +5,7 @@
 [![github actions](https://img.shields.io/github/actions/workflow/status/taiki-e/cargo-no-dev-deps/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/cargo-no-dev-deps/actions)
 ![maintenance-status](https://img.shields.io/badge/maintenance-deprecated-red?style=flat-square)
 
-**Note: This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.44.**
+**Note: This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.45.**
 
 Cargo subcommand for running cargo without dev-dependencies.
 
