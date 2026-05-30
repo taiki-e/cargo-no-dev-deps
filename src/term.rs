@@ -88,6 +88,18 @@ macro_rules! global_flag {
             pub(crate) fn set(value: $value) {
                 VALUE.store(value, Ordering::Relaxed);
             }
+            pub(crate) struct Guard {
+                prev: $value,
+            }
+            impl Drop for Guard {
+                fn drop(&mut self) {
+                    set(self.prev);
+                }
+            }
+            #[allow(dead_code)]
+            pub(crate) fn scoped(value: $value) -> Guard {
+                Guard { prev: VALUE.swap(value, Ordering::Relaxed) }
+            }
         }
         pub(crate) fn $name() -> $value {
             $name::VALUE.load(Ordering::Relaxed)
@@ -118,14 +130,14 @@ macro_rules! error {
     }};
 }
 
-// macro_rules! warn {
-//     ($($msg:expr),* $(,)?) => {{
-//         use std::io::Write as _;
-//         crate::term::warn::set(true);
-//         let mut stream = crate::term::print_status("warning", Some(termcolor::Color::Yellow));
-//         let _ = writeln!(stream, $($msg),*);
-//     }};
-// }
+macro_rules! warn {
+    ($($msg:expr),* $(,)?) => {{
+        use std::io::Write as _;
+        crate::term::warn::set(true);
+        let mut stream = crate::term::print_status("warning", Some(termcolor::Color::Yellow));
+        let _ = writeln!(stream, $($msg),*);
+    }};
+}
 
 macro_rules! info {
     ($($msg:expr),* $(,)?) => {{
