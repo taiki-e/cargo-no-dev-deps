@@ -3,6 +3,9 @@
 [![crates.io](https://img.shields.io/crates/v/cargo-no-dev-deps?style=flat-square&logo=rust)](https://crates.io/crates/cargo-no-dev-deps)
 [![license](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue?style=flat-square)](#license)
 [![github actions](https://img.shields.io/github/actions/workflow/status/taiki-e/cargo-no-dev-deps/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/taiki-e/cargo-no-dev-deps/actions)
+![maintenance-status](https://img.shields.io/badge/maintenance-deprecated-red?style=flat-square)
+
+**Note: This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.44.**
 
 Cargo subcommand for running cargo without dev-dependencies.
 
@@ -55,7 +58,7 @@ If you want exclude `publish = false` crates, you can exclude these crates by us
 cargo no-dev-deps --no-private check
 ```
 
-This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), because this also prevents private crates from affecting lockfile and metadata.
+This flag is more powerful than [cargo-hack's `--ignore-private` flag](https://github.com/taiki-e/cargo-hack#--ignore-private), because this also prevents private crates from affecting lockfile and metadata. (cargo-hack also supports `--no-private` flag.)
 
 ## Installation
 

@@ -10,7 +10,7 @@ keywords = ["cargo", "subcommand", "testing"]
 categories = ["command-line-utilities", "development-tools::cargo-plugins", "development-tools::testing"]
 exclude = ["/.*", "/tools"]
 description = """
-Cargo subcommand for running cargo without dev-dependencies.
+Cargo subcommand for running cargo without dev-dependencies. (deprecated)
 """
 
 [package.metadata.docs.rs]
@@ -21,6 +21,9 @@ disabled-strategies = ["quick-install"]
 pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }.tar.gz"
 bin-dir = "{ bin }{ binary-ext }"
 pkg-fmt = "tgz"
+
+[badges]
+maintenance = { status = "deprecated" }
 
 [dependencies]
 anyhow = "1.0.47"

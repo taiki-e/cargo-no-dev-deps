@@ -35,6 +35,12 @@ fn main() -> ExitCode {
 
 fn try_main() -> Result<()> {
     let Some(args) = Args::parse()? else { return Ok(()) };
+    {
+        let _guard = term::warn::scoped(false);
+        warn!(
+            "cargo-no-dev-deps is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.44"
+        );
+    }
     let ws = Workspace::new(args.manifest_path.as_deref())?;
 
     let no_dev_deps = true;
