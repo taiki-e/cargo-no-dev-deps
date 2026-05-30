@@ -12,6 +12,8 @@ Note: In this file, do not use the hard wrap in the middle of a sentence for com
 
 ## [Unreleased]
 
+## [0.2.24] - 2026-05-30
+
 **This crate is now deprecated in favor of more powerful `cargo hack --workspace-behavior=cargo --no-dev-deps` added in cargo-hack 0.6.45.** ([#14](https://github.com/taiki-e/cargo-no-dev-deps/pull/14))
 
 ## [0.2.23] - 2026-03-20
@@ -130,7 +132,8 @@ Note: this release lacks prebuilt binaries due to release workflow issue fixed i
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.23...HEAD
+[Unreleased]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.24...HEAD
+[0.2.24]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.23...v0.2.24
 [0.2.23]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.22...v0.2.23
 [0.2.22]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.21...v0.2.22
 [0.2.21]: https://github.com/taiki-e/cargo-no-dev-deps/compare/v0.2.20...v0.2.21
