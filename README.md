@@ -9,7 +9,7 @@
 
 Cargo subcommand for running cargo without dev-dependencies.
 
-This is an extraction of the [cargo-hack's `--no-dev-deps` flag](https://github.com/taiki-e/cargo-hack#--no-dev-deps) to be used as a stand-alone cargo subcommand.
+This is an extraction of the [cargo-hack's `--no-dev-deps` flag](https://github.com/taiki-e/cargo-hack#--no-dev-deps) to be used as a stand-alone cargo subcommand for use cases where cargo-hack's default workspace handling does not work.
 
 - [Usage](#usage)
 - [Installation](#installation)
